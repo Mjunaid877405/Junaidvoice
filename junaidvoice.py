@@ -5,7 +5,7 @@ import base64
 st.title("🔊 JunaidYT Text-to-Speech Tool")
 
 # Input your ElevenLabs API Key
-API_KEY = st.text_input("sk_20b1a5899d669aed061c48e8242efd55f43abf2445bfd0f3", type="Junaid78")
+API_KEY = st.text_input("sk_20b1a5899d669aed061c48e8242efd55f43abf2445bfd0f3", type="password")
 
 # Input text for speech synthesis
 text = st.text_area("Enter text to convert to speech:")
