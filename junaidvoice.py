@@ -128,15 +128,15 @@ if st.button("🔈 Generate Speech") and API_KEY and text:
             "xi-api-key": API_KEY,
             "Content-Type": "application/json"
         }
-payload = {
-    "text": text,
-    "model_id": "eleven_multilingual_v1",
-    "voice_settings": {
-        "stability": 0.5,
-        "similarity_boost": 0.5
-    }
-}
 
+        payload = {
+            "text": text,
+            "model_id": "eleven_multilingual_v1",
+            "voice_settings": {
+                "stability": 0.5,
+                "similarity_boost": 0.5
+            }
+        }
 
         response = requests.post(url, headers=headers, json=payload)
         if response.status_code == 200:
@@ -152,3 +152,4 @@ payload = {
 
     except Exception as e:
         st.error(f"Error: {e}")
+
