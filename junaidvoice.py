@@ -5,47 +5,82 @@ import base64
 st.markdown("""
     <style>
     .main {
-        background-color: #f8f9fa;
+        background: linear-gradient(135deg, #00bcd4, #4caf50);
+        padding: 50px 0;
+        font-family: 'Arial', sans-serif;
     }
 
     h1 {
         font-size: 3em;
-        color: #2c3e50;
+        color: #ffffff;
         font-weight: bold;
         text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    .stTextInput > div > div > input {
-        background-color: #ffffff;
-        border: 2px solid #6c757d;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
+    .stTextInput > div > div > input,
     .stTextArea > div > textarea {
         background-color: #ffffff;
-        border: 2px solid #6c757d;
-        padding: 10px;
-        border-radius: 10px;
+        border: 2px solid #00bcd4;
+        padding: 12px;
+        border-radius: 12px;
+        font-size: 1.1em;
+        transition: border-color 0.3s ease;
     }
 
-    .stButton > button {
-        background-color: #2c3e50;
+    .stTextInput > div > div > input:focus,
+    .stTextArea > div > textarea:focus {
+        border-color: #4caf50;
+    }
+
+    .stButton > button,
+    .stDownloadButton > button {
+        background-color: #00bcd4;
         color: white;
-        border-radius: 10px;
-        padding: 10px 24px;
-        font-size: 1.1em;
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-size: 1.2em;
+        transition: background-color 0.3s ease;
+        border: none;
+    }
+
+    .stButton > button:hover,
+    .stDownloadButton > button:hover {
+        background-color: #4caf50;
     }
 
     .stSelectbox > div {
         background-color: #ffffff;
-        border-radius: 10px;
-        border: 2px solid #6c757d;
-        padding: 5px;
+        border-radius: 12px;
+        border: 2px solid #00bcd4;
+        padding: 12px;
+        transition: border-color 0.3s ease;
+    }
+
+    .stSelectbox > div:focus-within {
+        border-color: #4caf50;
     }
 
     .stAudio {
         margin-top: 20px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .stSlider > div > div > div > input {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .stSlider > div > div > div > input:hover {
+        background-color: #e0f7fa;
+    }
+
+    .stSlider > div > div > div > input:focus {
+        border-color: #4caf50;
     }
 
     .stDownloadButton > button {
