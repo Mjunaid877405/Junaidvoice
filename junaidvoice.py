@@ -10,12 +10,12 @@ API_KEY = st.text_input("sk_20b1a5899d669aed061c48e8242efd55f43abf2445bfd0f3", t
 # Input text for speech synthesis
 text = st.text_area("Enter text to convert to speech:")
 
-# Choose voice (these are public demo voices from ElevenLabs)
+# Voice selection
 voices = {
     "Rachel": "21m00Tcm4TlvDq8ikWAM",
     "Domi": "AZnzlk1XvdvUeBnXmlld",
-    "Bella": "EXAVITQu4vr4xnSDxMaL"
-    "Liam": "TX3LPaxmHKxFdv7VOQHJ"
+    "Bella": "EXAVITQu4vr4xnSDxMaL",
+    "Liam": "TX3LPaxmHKxFdv7VOQHJ",
     "Knox Dark 2": "dPah2VEoifKnZT37774q"
 }
 selected_voice = st.selectbox("Choose a Voice", list(voices.keys()))
@@ -30,7 +30,7 @@ if st.button("🔈 Generate Speech") and API_KEY and text:
         }
         payload = {
             "text": text,
-            "model_id": "eleven_monolingual_v1",  # You can use other model IDs if needed
+            "model_id": "eleven_monolingual_v1",
             "voice_settings": {
                 "stability": 0.5,
                 "similarity_boost": 0.5
@@ -45,7 +45,6 @@ if st.button("🔈 Generate Speech") and API_KEY and text:
             st.audio(audio_data, format='audio/mp3')
             st.success("Speech generated successfully!")
 
-            # Option to download
             st.download_button("⬇️ Download Audio", data=audio_data, file_name="speech.mp3")
         else:
             st.error(f"Failed to generate speech: {response.text}")
