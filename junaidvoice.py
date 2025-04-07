@@ -1,6 +1,63 @@
 import streamlit as st
 import requests
 import base64
+st.markdown("""
+    <style>
+    .main {
+        background-color: #f8f9fa;
+    }
+
+    h1 {
+        font-size: 3em;
+        color: #2c3e50;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .stTextInput > div > div > input {
+        background-color: #ffffff;
+        border: 2px solid #6c757d;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .stTextArea > div > textarea {
+        background-color: #ffffff;
+        border: 2px solid #6c757d;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .stButton > button {
+        background-color: #2c3e50;
+        color: white;
+        border-radius: 10px;
+        padding: 10px 24px;
+        font-size: 1.1em;
+    }
+
+    .stSelectbox > div {
+        background-color: #ffffff;
+        border-radius: 10px;
+        border: 2px solid #6c757d;
+        padding: 5px;
+    }
+
+    .stAudio {
+        margin-top: 20px;
+    }
+
+    .stDownloadButton > button {
+        background-color: #27ae60;
+        color: white;
+        border-radius: 10px;
+        padding: 10px 20px;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 
 st.title("🔊 JunaidYT Text-to-Speech Tool")
 
