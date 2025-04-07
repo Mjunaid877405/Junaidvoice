@@ -74,6 +74,8 @@ voices = {
     "Bella": "EXAVITQu4vr4xnSDxMaL",
     "Liam": "TX3LPaxmHKxFdv7VOQHJ",
     "Knox Dark 2": "dPah2VEoifKnZT37774q"
+    "Callum ": "X1tufN2s4pZ5Z7j8p23n"
+    
 }
 selected_voice = st.selectbox("Choose a Voice", list(voices.keys()))
 voice_id = voices[selected_voice]
