@@ -2,10 +2,10 @@ import streamlit as st
 import requests
 import base64
 
-st.title("🔊 ElevenLabs Text-to-Speech Tool")
+st.title("🔊 JunaidYT Text-to-Speech Tool")
 
 # Input your ElevenLabs API Key
-API_KEY = st.text_input("sk_20b1a5899d669aed061c48e8242efd55f43abf2445bfd0f3", type="password")
+API_KEY = st.text_input("sk_20b1a5899d669aed061c48e8242efd55f43abf2445bfd0f3", type="Junaid78")
 
 # Input text for speech synthesis
 text = st.text_area("Enter text to convert to speech:")
@@ -16,6 +16,7 @@ voices = {
     "Domi": "AZnzlk1XvdvUeBnXmlld",
     "Bella": "EXAVITQu4vr4xnSDxMaL"
     "Liam": "TX3LPaxmHKxFdv7VOQHJ"
+    "Knox Dark 2": "dPah2VEoifKnZT37774q"
 }
 selected_voice = st.selectbox("Choose a Voice", list(voices.keys()))
 voice_id = voices[selected_voice]
