@@ -75,6 +75,7 @@ voices = {
     "Liam": "TX3LPaxmHKxFdv7VOQHJ",
     "Knox Dark 2": "dPah2VEoifKnZT37774q",
     "Jeremy (Legacy)": "bVMeCyTHy58xNoL34h3p",
+    "Adam (legacy)": "N2lVS1w4EtoT3dr4eOWO",
     "Callum ": "X1tufN2s4pZ5Z7j8p23n"
 }
 
