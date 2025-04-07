@@ -98,7 +98,7 @@ st.markdown("""
 st.title("🔊 JunaidYT Text-to-Speech Tool")
 
 # Input your ElevenLabs API Key
-API_KEY = st.text_input("Enter Passwords", type="password")
+API_KEY = st.text_input("Enter your ElevenLabs API Key", type="password").strip()
 
 # Input text for speech synthesis
 text = st.text_area("Enter text to convert to speech:")
