@@ -106,7 +106,7 @@ text = st.text_area("Enter text to convert to speech:")
 # Voice selection
 voices = {
     "Usama": "nPczCjzI2devNBz1zQrb",
-    "Domi": "AZnzlk1XvdvUeBnXmlld",
+    "tom": "sTeT0bXBeK6hi9pnfwhh",
     "Bella": "EXAVITQu4vr4xnSDxMaL",
     "Liam": "TX3LPaxmHKxFdv7VOQHJ",
     "Knox Dark 2": "dPah2VEoifKnZT37774q",
