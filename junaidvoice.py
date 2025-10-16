@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import base64
 
+# --- Custom CSS for styling ---
 st.markdown("""
     <style>
     .main {
@@ -69,20 +70,6 @@ st.markdown("""
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .stSlider > div > div > div > input {
-        background-color: #ffffff;
-        border-radius: 10px;
-        padding: 10px;
-    }
-
-    .stSlider > div > div > div > input:hover {
-        background-color: #e0f7fa;
-    }
-
-    .stSlider > div > div > div > input:focus {
-        border-color: #4caf50;
-    }
-
     .stDownloadButton > button {
         background-color: #27ae60;
         color: white;
@@ -95,61 +82,54 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-st.title("🔊 JunaidYT Text-to-Speech Tool")
+st.title("🔊 JunaidYT AI33.pro Text-to-Speech Tool")
 
-# Input your ElevenLabs API Key
-API_KEY = st.text_input("Enter your ElevenLabs API Key", type="password").strip()
+# Input for API key (optional — if your API requires one)
+API_KEY = st.text_input("Enter your API Key (if required)", type="password").strip()
 
-# Input text for speech synthesis
+# Text input
 text = st.text_area("Enter text to convert to speech:")
 
 # Voice selection
-voices = {
-    "Usama": "nPczCjzI2devNBz1zQrb",
-    "tom": "sTeT0bXBeK6hi9pnfwhh",
-    "Bella": "EXAVITQu4vr4xnSDxMaL",
-    "Liam": "TX3LPaxmHKxFdv7VOQHJ",
-    "Knox Dark 2": "dPah2VEoifKnZT37774q",
-    "Jeremy (Legacy)": "bVMeCyTHy58xNoL34h3p",
-    "Adam (legacy)": "N2lVS1w4EtoT3dr4eOWO",
-    "Callum ": "X1tufN2s4pZ5Z7j8p23n"
-}
+voices = ["male", "female", "robot", "child"]
+selected_voice = st.selectbox("Choose a voice", voices)
 
-selected_voice = st.selectbox("Choose a Voice", list(voices.keys()))
-voice_id = voices[selected_voice]
+# Speed selection
+speed = st.slider("Select Speech Speed", min_value=0.5, max_value=2.0, value=1.0, step=0.1)
 
-# Speed selection (rate)
-rate = st.slider("Select Speech Speed", min_value=0.5, max_value=2.0, value=1.0, step=0.1)
+# Generate speech button
+if st.button("🎤 Generate Speech"):
+    if not text:
+        st.warning("Please enter some text first!")
+    else:
+        try:
+            url = "https://ai33.pro/app/api-document"
+            headers = {"Content-Type": "application/json"}
+            if API_KEY:
+                headers["Authorization"] = f"Bearer {API_KEY}"
 
-if st.button("🔈 Generate Speech") and API_KEY and text:
-    try:
-        url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
-        headers = {
-            "xi-api-key": API_KEY,
-            "Content-Type": "application/json"
-        }
-
-        payload = {
-            "text": text,
-            "model_id": "eleven_multilingual_v1",
-            "voice_settings": {
-                "stability": 0.5,
-                "similarity_boost": 0.5
+            payload = {
+                "text": text,
+                "voice": selected_voice,
+                "speed": speed
             }
-        }
 
-        response = requests.post(url, headers=headers, json=payload)
-        if response.status_code == 200:
-            audio_data = response.content
-            b64_audio = base64.b64encode(audio_data).decode()
+            response = requests.post(url, headers=headers, json=payload)
 
-            st.audio(audio_data, format='audio/mp3')
-            st.success("Speech generated successfully!")
+            if response.status_code == 200:
+                audio_data = response.content
 
-            st.download_button("⬇️ Download Audio", data=audio_data, file_name="speech.mp3")
-        else:
-            st.error(f"Failed to generate speech: {response.text}")
+                # Play and Download
+                st.audio(audio_data, format="audio/mp3")
+                st.success("✅ Speech generated successfully!")
+                st.download_button(
+                    label="⬇️ Download Audio",
+                    data=audio_data,
+                    file_name="speech_ai33.mp3",
+                    mime="audio/mp3"
+                )
+            else:
+                st.error(f"Failed to generate speech: {response.text}")
 
-    except Exception as e:
-        st.error(f"Error: {e}")
-
+        except Exception as e:
+            st.error(f"Error: {e}")
