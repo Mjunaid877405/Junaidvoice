@@ -106,11 +106,10 @@ text = st.text_area("Enter text to convert to speech:")
 # 🗣️ Voice Selection with IDs
 # ===============================
 voices = {
-    "Usama (Deep Male Voice)": "usama_v1",
-    "Bella (Soft Female Voice)": "bella_v2",
-    "Robot (AI Voice)": "robot_x",
-    "Child (Young Voice)": "child_y",
-    "Junaid (Natural Male)": "junaid_pro"
+    "knox dark 2": "dPah2VEoifKnZT37774q",
+    "Junaid": "abc123xyz",
+    "Male": "male",
+    "Female": "female"
 }
 
 selected_voice = st.selectbox("Choose a Voice", list(voices.keys()))
