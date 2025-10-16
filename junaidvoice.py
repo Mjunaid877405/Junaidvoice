@@ -2,7 +2,9 @@ import streamlit as st
 import requests
 import base64
 
-# --- Custom CSS for styling ---
+# ===============================
+# 🌈 Custom CSS Styling
+# ===============================
 st.markdown("""
     <style>
     .main {
@@ -82,35 +84,63 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+# ===============================
+# 🎙️ APP TITLE
+# ===============================
 st.title("🔊 JunaidYT AI33.pro Text-to-Speech Tool")
 
-# Input for API key (optional — if your API requires one)
-API_KEY = st.text_input("Enter your API Key (if required)", type="password").strip()
 
-# Text input
+# ===============================
+# 🔑 API Key Input
+# ===============================
+API_KEY = st.text_input("Enter your AI33.pro API Key", type="password").strip()
+
+
+# ===============================
+# 📝 Text Input
+# ===============================
 text = st.text_area("Enter text to convert to speech:")
 
-# Voice selection
-voices = ["male", "female", "robot", "child"]
-selected_voice = st.selectbox("Choose a voice", voices)
 
-# Speed selection
+# ===============================
+# 🗣️ Voice Selection with IDs
+# ===============================
+voices = {
+    "Usama (Deep Male Voice)": "usama_v1",
+    "Bella (Soft Female Voice)": "bella_v2",
+    "Robot (AI Voice)": "robot_x",
+    "Child (Young Voice)": "child_y",
+    "Junaid (Natural Male)": "junaid_pro"
+}
+
+selected_voice = st.selectbox("Choose a Voice", list(voices.keys()))
+voice_id = voices[selected_voice]
+
+
+# ===============================
+# ⚡ Speed Control
+# ===============================
 speed = st.slider("Select Speech Speed", min_value=0.5, max_value=2.0, value=1.0, step=0.1)
 
-# Generate speech button
+
+# ===============================
+# 🎧 Generate Speech
+# ===============================
 if st.button("🎤 Generate Speech"):
     if not text:
-        st.warning("Please enter some text first!")
+        st.warning("⚠️ Please enter some text to convert.")
     else:
         try:
-            url = "https://ai33.pro/app/api-document"
-            headers = {"Content-Type": "application/json"}
+            url = "https://ai33.pro/app/api-document"  # Replace with the correct API endpoint if needed
+            headers = {
+                "Content-Type": "application/json"
+            }
             if API_KEY:
                 headers["Authorization"] = f"Bearer {API_KEY}"
 
             payload = {
                 "text": text,
-                "voice": selected_voice,
+                "voice": voice_id,
                 "speed": speed
             }
 
@@ -118,8 +148,6 @@ if st.button("🎤 Generate Speech"):
 
             if response.status_code == 200:
                 audio_data = response.content
-
-                # Play and Download
                 st.audio(audio_data, format="audio/mp3")
                 st.success("✅ Speech generated successfully!")
                 st.download_button(
@@ -129,7 +157,7 @@ if st.button("🎤 Generate Speech"):
                     mime="audio/mp3"
                 )
             else:
-                st.error(f"Failed to generate speech: {response.text}")
+                st.error(f"❌ Failed to generate speech:\n{response.text}")
 
         except Exception as e:
-            st.error(f"Error: {e}")
+            st.error(f"⚠️ Error: {e}")
